@@ -38,7 +38,7 @@ def load_and_preprocess_data(filepath):
     demand_df['Location_Encoded'] = le.fit_transform(demand_df['Charging Station Location'])
     
     # Save the encoder for the simulation tool
-    joblib.dump(le, "/Users/agnik/Desktop/genai/location_encoder.pkl")
+    joblib.dump(le, "location_encoder.pkl")
     
     return demand_df, ev_charge_df
 
@@ -73,8 +73,8 @@ def load_model(filename='ev_demand_model.pkl'):
     return None
 
 def predict_demand(hour, day_of_week, month, is_weekend, temp, battery_cap, location):
-    model = load_model("/Users/agnik/Desktop/genai/ev_demand_model.pkl")
-    le = joblib.load("/Users/agnik/Desktop/genai/location_encoder.pkl")
+    model = load_model("ev_demand_model.pkl")
+    le = joblib.load("location_encoder.pkl")
     
     loc_encoded = le.transform([location])[0]
     
@@ -92,7 +92,7 @@ def predict_demand(hour, day_of_week, month, is_weekend, temp, battery_cap, loca
     return prediction
 
 if __name__ == "__main__":
-    filepath = "/Users/agnik/Desktop/genai/ev_charging_patterns.csv"
+    filepath = "ev_charging_patterns.csv"
     if os.path.exists(filepath):
         print(f"Loading and processing data from {filepath}...")
         demand_df, _ = load_and_preprocess_data(filepath)
@@ -105,7 +105,7 @@ if __name__ == "__main__":
         print(f"RMSE: {metrics['RMSE']:.2f}")
         print(f"R-Squared: {metrics['R2']:.2f}\n")
         
-        save_model(model, "/Users/agnik/Desktop/genai/ev_demand_model.pkl")
+        save_model(model, "ev_demand_model.pkl")
         print("Model and Encoders saved successfully.")
     else:
         print(f"Error: {filepath} not found.")

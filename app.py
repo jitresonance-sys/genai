@@ -121,7 +121,7 @@ st.markdown("**Autonomous Infrastructure Analytics System**")
 
 # Sidebar
 st.sidebar.header(":material/settings: Configuration")
-data_path = st.sidebar.text_input("Dataset Source", "/Users/agnik/Desktop/genai/ev_charging_patterns.csv")
+data_path = st.sidebar.text_input("Dataset Source", "ev_charging_patterns.csv")
 
 # Tabs
 tab1, tab2, tab3 = st.tabs([

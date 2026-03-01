@@ -241,7 +241,7 @@ with tab2:
                 model, metrics, results_df = build_and_train_model(demand_df)
                 
                 # Save model
-                save_model(model, "/Users/agnik/Desktop/genai/ev_demand_model.pkl")
+                save_model(model, "ev_demand_model.pkl")
                 
                 st.success("Model compiled and verified successfully!")
                 
@@ -276,7 +276,7 @@ with tab3:
     st.header(":material/batch_prediction: Session Simulator")
     st.write("Input macroscopic conditions to forecast aggregate hourly electricity load for a specific location.")
     
-    if os.path.exists("/Users/agnik/Desktop/genai/ev_demand_model.pkl") and os.path.exists("/Users/agnik/Desktop/genai/location_encoder.pkl"):
+    if os.path.exists("ev_demand_model.pkl") and os.path.exists("location_encoder.pkl"):
         if os.path.exists(data_path):
             demand_df, _ = load_and_preprocess_data(data_path)
             
